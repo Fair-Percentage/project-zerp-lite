@@ -118,7 +118,7 @@
 #define MAGENTA "\033[1;35m"
 #define RED "\033[1;31m"
 #define BR "\033[1m"
-#define DK "\033[0;37m"
+#define DK "\033[37m\033[0m"
 #define SEP "\033[0m|\033[1m"
 #define CYAN_BR "\033[1;36m"
 
@@ -269,6 +269,7 @@ int open_level(int n){
 	return start_bombs;
 }
 
+#ifndef __linux__
 void draw_field(void){
 	int i, j;
 	char t, F;
@@ -324,6 +325,61 @@ void draw_field(void){
 	}
 	CURS_SHOW
 }
+#else
+void draw_field(void){
+	int i, j;
+	char t, F;
+	printf(TBS);
+	if (!help || LONG_TERM){
+		for (j = 1; j < WIDTH; j++) printf("=-=");
+		printf("\n"TBS);
+	}
+	for (i = 0; i < HEIGHT; i++){
+		for (j = 1; j < WIDTH; j++){
+			F = field[i][j];
+			if (F == '@'){
+				if (super) printf(CYAN_BR);
+				else printf(YELLOW);
+				if (air)
+					if (facing) printf(super ? " @*": ",@'");
+					else printf(super ? "*@ " : "'@,");
+				else printf(" @ ");
+				printf(RESET);
+			}
+			else if (F == 'q') printf(MAGENTA "o_o" RESET);
+			else if (F == 1) printf(":::");
+			else if (F == 2) printf("222");
+			else if (F == 3) printf(j % 2 ?"\\/\\":"/\\/");
+			else if (F) printf("%c%c%c", 175 + F, 175 + F, 175 + F);
+			else printf("   ");
+		}
+		printf("\n"TBS);
+		for (j = 1; j < WIDTH; j++){
+			F = field[i][j];
+			if (F == '@'){
+				if (super) printf(CYAN_BR);
+				else printf(YELLOW);
+				if (air)
+					if (facing) printf(super ? "*Y'" : " Y'");
+					else printf(super ? "'Y*" : "'Y ");
+				else printf(super ? "*X*" : "'X'");
+				printf(RESET);
+			}
+			else if (F == 'q') printf(MAGENTA "/|\\" RESET);
+			else if (F == 1) printf(":::");
+			else if (F == 2) printf("222");
+			else if (F == 3) printf(j % 2 ?"/\\/":"\\/\\");
+			else if (F) printf("%c%c%c", 175 + F, 175 + F, 175 + F);
+			else printf("   ");
+		}
+		printf("\n"TBS);
+	}
+	if (!help || LONG_TERM){
+		for (j = 1; j < WIDTH; j++) printf("=-=");
+		printf("\n"TBS);
+	}
+}
+#endif
 
 void shuffle(int points[][2], int n){
 	int i, j, temp0, temp1;
