@@ -117,9 +117,9 @@
 #define CYAN "\033[0;36m"
 #define MAGENTA "\033[1;35m"
 #define RED "\033[1;31m"
-#define BR "\033[;1m"
-#define DK "\033[;0m"
-#define SEP "\033[;0m|\033[;1m"
+#define BR "\033[1m"
+#define DK "\033[0;37m"
+#define SEP "\033[0m|\033[1m"
 #define CYAN_BR "\033[1;36m"
 
 unsigned char field[HEIGHT][WIDTH];
@@ -550,6 +550,13 @@ int main(void){
 		if (p_i == ';') p_i = 'h';
 		if (p_i == ENTR) p_i = prpr_i;
 		if (p_i >= 'A' && p_i <= 'Z') p_i += ('a' - 'A');
+		switch (p_i){
+			/* Alternative controls. */
+			case 'z':  p_i = 'a';  break;
+			case 'x':  p_i = 'd';  break;
+			case '\'': p_i = 'w'; break;
+			case '/':  p_i = 's';  break;
+		}
 		if (p_i == 'w' && p_y > 0){
 			SND(456)
 			if (field[p_y - 1][p_x] == 'q'){
