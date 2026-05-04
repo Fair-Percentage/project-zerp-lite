@@ -117,10 +117,10 @@
 #define CYAN "\033[0;36m"
 #define MAGENTA "\033[1;35m"
 #define RED "\033[1;31m"
-#define BR "\033[1m"
-#define DK "\033[37m\033[0m"
-#define SEP "\033[0m|\033[1m"
 #define CYAN_BR "\033[1;36m"
+#define BR "\033[1m"
+#define DK "\033[0m"
+#define SEP "\033[0m|\033[1m"
 
 unsigned char field[HEIGHT][WIDTH];
 unsigned char stored_field[HEIGHT][WIDTH];
