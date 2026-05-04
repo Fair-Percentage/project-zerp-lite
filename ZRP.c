@@ -637,7 +637,7 @@ int main(void){
 		/* Applying the action */
 		switch (p_i){
 			case 27: goto title;
-			case ' ': SND(456) printf("\033c\033[2J"); break;
+			case ' ': SND(456) break;
 			case 'w': break;
 			case 'q': 
 				if (legacy_mode) while (getchar() != '\n');
