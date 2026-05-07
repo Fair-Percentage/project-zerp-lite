@@ -479,7 +479,7 @@ int main(void){
 		cprintf(" Last key: %c ", p_i);
 		putchar('|');
 		if (super) cprintf(" Charged up!");
-		else if (bombs) cprintf(" Charges: %d", bombs);
+		else if (bombs) cprintf(" Charges: %d  ", bombs);
 		else cprintf(" No charges!");
 		printf("\n");
 		if (dodraw) draw_field();
