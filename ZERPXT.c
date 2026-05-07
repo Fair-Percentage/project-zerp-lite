@@ -8,7 +8,6 @@
 #define BOMBS 3
 #define MOBS 3
 #define TBS "\t   "
-#define TOPPAD ""
 #define RIDEABLE_MOBS 1
 
 /* Code for MS-DOS and Windows */
@@ -470,7 +469,7 @@ int main(void){
 	while (1){
 		int retry = 0;
 		int skip_ai = 0;
-		printf(TOPPAD TBS);
+		gotoxy(12,1);
 		textcolor(WHITE);
 		cprintf("Level: %d ", level);
 		putchar('|');
