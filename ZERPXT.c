@@ -1,25 +1,23 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include <time.h>
+#include <conio.h>
+#include <dos.h>
 
 /* game settings */
 #define WIDTH 20
 #define HEIGHT 10
 #define BOMBS 3
 #define MOBS 3
-#define TBS "\t   "
 #define RIDEABLE_MOBS 1
 
-/* Code for MS-DOS and Windows */
-#include <conio.h>
+#define ESCP 0
 #define ENTR 13
+
 #define ARR_UP 'H'
 #define ARR_LT 'K'
 #define ARR_DN 'P'
 #define ARR_RT 'M'
 
-/* MS-DOS specific code */
-#include <dos.h>
 void hide_cursor(void) {
 	union REGS regs;
 	regs.h.ah = 0x01;
@@ -36,10 +34,10 @@ void show_cursor(void) {
 }
 #define NOSND nosound();
 #define SND(f) if (do_sound) sound(f);
-#define CLEAR_TO_END ""
 #define CURS_HIDE hide_cursor();
 #define CURS_SHOW show_cursor();
-#define ESCP 0
+#define TBS "\t   "
+
 typedef unsigned long my32;
 
 unsigned char field[HEIGHT][WIDTH];
