@@ -405,7 +405,7 @@ int main(void){
 			textcolor(LIGHTGRAY);
 		}
 		printf("\n\n\nAltern. controls: adok, numpad.");
-		printf("\nKosmoKrab 2026   ");
+		printf("\nKosmoKrab 2026 ");
 		if (legacy_mode) printf("(cooked mode, hit L to change) ");
 		else printf("(raw mode, hit L to change)    ");
 		p_i = getch();
