@@ -404,7 +404,8 @@ int main(void){
 			cputs("                   >  LOAD SECTOR  <");putchar('\n');
 			textcolor(LIGHTGRAY);
 		}
-		printf("\n\n\nKosmoKrab 2026 ");
+		printf("\n\n\nAltern. controls: adok, numpad.");
+		printf("\nKosmoKrab 2026   ");
 		if (legacy_mode) printf("(cooked mode, hit L to change) ");
 		else printf("(raw mode, hit L to change)    ");
 		p_i = getch();
@@ -487,23 +488,25 @@ int main(void){
 		}
 		if (help) gotoxy(12,22);
 		else gotoxy(12,24);
-		textcolor(LIGHTGRAY);
-		if (!help) delline();
 		textcolor(WHITE);
 		cprintf("Turn: %d ", turns);
-		putchar('|');
+		textcolor(LIGHTGRAY);
+		putch('|');
+		textcolor(WHITE);
 		cprintf(" Score: %d ", score);
-		putchar('|');
+		textcolor(LIGHTGRAY);
+		putch('|');
+		textcolor(WHITE);
 		cprintf(" Session best: %d ", maxscore);
 		textcolor(LIGHTGRAY);
 		if (help) {
 			gotoxy(12,23);
 			cputs("  wasd - move; b - charge; l - retry; q - quit;");
 			gotoxy(12,24);
-			delline();
 			cputs("  v - sound; h - hide; space - wait. ");
 		}
-		printf("> ");
+		cputs("> ");
+		clreol();
 		dodraw = 1;
 		NOSND
 		prpr_i = p_i;
@@ -514,6 +517,7 @@ int main(void){
 				isrep = 0;
 				prev_i = p_i;
 			} else {
+				if (!turns) break;
 				if (isrep) p_i = prev_i;
 				isrep = 1;
 			}
@@ -538,10 +542,16 @@ int main(void){
 		if (p_i >= 'A' && p_i <= 'Z') p_i += ('a' - 'A');
 		switch (p_i){
 			/* Alternative controls. */
-			case 'z':  p_i = 'a';  break;
-			case 'x':  p_i = 'd';  break;
-			case '\'': p_i = 'w'; break;
-			case '/':  p_i = 's';  break;
+			case 'o': p_i = 'w';  break;
+			case 'k': p_i = 's';  break;
+			/* Numpad controls. */
+			case '7': p_i = 'a';  break;
+			case '4': p_i = 'a';  break;
+			case '9': p_i = 'd';  break;
+			case '6': p_i = 'd';  break;
+			case '8': p_i = 'w';  break;
+			case '5': p_i = 's';  break;
+			case '2': p_i = 's';  break;
 		}
 		if (p_i == 'w' && p_y > 0){
 			dodraw = 0;
@@ -570,7 +580,7 @@ int main(void){
 		/* Applying the action */
 		switch (p_i){
 			case 27: goto title;
-			case ' ': SND(456) break;
+			case ' ': SND(456) dodraw = 0; break;
 			case 'w': break;
 			case 'q': 
 				if (legacy_mode) while (getchar() != '\n');
