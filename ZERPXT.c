@@ -374,40 +374,29 @@ int main(void){
 	putchar('\n');
 	textcolor(LIGHTGRAY);
 	cputs(  "      Goal: break all weak blocks and don't get stuck!");
+	gotoxy(1,24); cputs("Altern. controls: adok, numpad.");
+	gotoxy(1,25); cputs("KosmoKrab 2026");
 	while (1){
 		gotoxy(1, 13); cputs("");
 		if (!legacy_mode) printf(
 			"Actions:\n   wasd or arrows - move; b - use charge; l - retry; q or ESC - quit;\n"
-			"   h or F1 - tips; v - sound; ENTER - key repeat; SPACE - wait.\n\n\n");
+			"   h or F1 - tips; v - sound; ENTER - key repeat; SPACE - wait.");
 		else printf(
 			"Actions:\n   wasd - move; b - use charge; l - retry; q - quit;                 \n"
-			"   h - tips; v - sound; ENTER - key repeat; SPACE - wait.      \n\n\n");
-		switch (mptr){
-		case 0: 
-			textcolor(YELLOW);
-			cputs("                   > PLAY TUTORIAL <");putchar('\n');
-			textcolor(LIGHTGRAY);
-			cputs("                      PLAY RANDOM   ");putchar('\n');
-			cputs("                      LOAD SECTOR   ");putchar('\n');
-			break;
-		case 1:
-			cputs("                     PLAY TUTORIAL  ");putchar('\n');
-			textcolor(YELLOW);
-			cputs("                   >  PLAY RANDOM  <");putchar('\n');
-			textcolor(LIGHTGRAY);
-			cputs("                      LOAD SECTOR   ");putchar('\n');
-			break;
-		case 2:
-			cputs("                     PLAY TUTORIAL  ");putchar('\n');
-			cputs("                      PLAY RANDOM   ");putchar('\n');
-			textcolor(YELLOW);
-			cputs("                   >  LOAD SECTOR  <");putchar('\n');
-			textcolor(LIGHTGRAY);
-		}
-		printf("\n\n\nAltern. controls: adok, numpad.");
-		printf("\nKosmoKrab 2026 ");
-		if (legacy_mode) printf("(cooked mode, hit L to change) ");
-		else printf("(raw mode, hit L to change)    ");
+			"   h - tips; v - sound; ENTER - key repeat; SPACE - wait.      ");
+		
+		if (mptr == 0) textcolor(YELLOW);
+		gotoxy(19,18);cputs(mptr == 0 ? "> PLAY TUTORIAL <" : "  PLAY TUTORIAL  ");putchar('\n');
+		textcolor(LIGHTGRAY);
+		if (mptr == 1) textcolor(YELLOW);
+		gotoxy(19,19);cputs(mptr == 1 ? ">  PLAY RANDOM  <" : "   PLAY RANDOM   ");putchar('\n');
+		textcolor(LIGHTGRAY);
+		if (mptr == 2) textcolor(YELLOW);
+		gotoxy(19,20);cputs(mptr == 2 ? ">  LOAD SECTOR  <" : "   LOAD SECTOR   ");putchar('\n');
+		textcolor(LIGHTGRAY);
+		gotoxy(16,25);
+		if (legacy_mode) cputs("(cooked mode, hit L to change) ");
+		else cputs("(raw mode, hit L to change)    ");
 		p_i = getch();
 		if (p_i == ' ' || p_i == ENTR) break;
 		if (p_i >= 'A' && p_i <= 'Z') p_i += ('a' - 'A');
