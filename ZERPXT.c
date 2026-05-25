@@ -53,7 +53,7 @@ my32 my_rand(){
 	return my_seed >> 16;
 }
 
-char alt_climb(const int p_x, const int p_y, const int super){
+char alt_climb(const int p_x, const int p_y){
 	if (facing && p_x < WIDTH - 1 && (field[p_y][p_x + 1] < 3 || super) && field[p_y + 1][p_x + 1]){
 		return 'd';
 	}
@@ -224,9 +224,9 @@ void draw_field(void){
 				if (super) textcolor(LIGHTCYAN);
 				else textcolor(YELLOW);
 				if (air)
-					if (facing) cputs(super ? "\311\312\315": "\311\312\315");
-					else cputs(super ? "\315\312\273" : "\315\312\273");
-				else cputs(super ? "\311\312\273" : "\311\312\273");
+					if (facing) cputs("\311\312\315");
+					else cputs("\315\312\273");
+				else cputs("\311\312\273");
 				textcolor(LIGHTGRAY);
 			}
 			else if (F == 'q') { 
@@ -374,10 +374,10 @@ int main(void){
 	putchar('\n');
 	textcolor(LIGHTGRAY);
 	cputs(  "      Goal: break all weak blocks and don't get stuck!");
-	gotoxy(1,24); cputs("Altern. controls: adok, numpad.");
-	gotoxy(1,25); cputs("KosmoKrab 2026");
+	gotoxy(2,23); cputs("Altern. controls: adok, numpad.");
+	gotoxy(2,24); cputs("KosmoKrab 2026");
 	while (1){
-		gotoxy(1, 13); cputs("");
+		gotoxy(2, 13); cputs("");
 		if (!legacy_mode) printf(
 			"Actions:\n   wasd or arrows - move; b - use charge; l - retry; q or ESC - quit;\n"
 			"   h or F1 - tips; v - sound; ENTER - key repeat; SPACE - wait.");
@@ -394,7 +394,7 @@ int main(void){
 		if (mptr == 2) textcolor(YELLOW);
 		gotoxy(19,20);cputs(mptr == 2 ? ">  LOAD SECTOR  <" : "   LOAD SECTOR   ");putchar('\n');
 		textcolor(LIGHTGRAY);
-		gotoxy(16,25);
+		gotoxy(17,24);
 		if (legacy_mode) cputs("(cooked mode, hit L to change) ");
 		else cputs("(raw mode, hit L to change)    ");
 		p_i = getch();
@@ -562,7 +562,7 @@ int main(void){
 				undrawat(p_x, p_y);
 				field[p_y][p_x] = '@';
 			
-				climb = alt_climb(p_x, p_y, super);
+				climb = alt_climb(p_x, p_y);
 				if (climb && air) p_i = climb;
 			}
 		}
