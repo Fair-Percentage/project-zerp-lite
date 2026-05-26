@@ -359,6 +359,7 @@ int main(void){
 	int p_yt = 0, p_xt = 0;
 	my_srand(time(NULL));
 	title:
+	mptr = 1;
 	CURS_HIDE
 	clrscr();
 	textcolor(WHITE);
@@ -374,16 +375,16 @@ int main(void){
 	putchar('\n');
 	textcolor(LIGHTGRAY);
 	cputs(  "      Goal: break all weak blocks and don't get stuck!");
-	gotoxy(2,23); cputs("Altern. controls: adok, numpad.");
-	gotoxy(2,24); cputs("KosmoKrab 2026");
+	gotoxy(4,24); cputs("KosmoKrab 2026");
+	gotoxy(1, 15); cputs("  ADOK, numpad - alternative keys.");
 	while (1){
-		gotoxy(2, 13); cputs("");
+		gotoxy(1, 13); cputs("");
 		if (!legacy_mode) printf(
-			"Actions:\n   wasd or arrows - move; b - use charge; l - retry; q or ESC - quit;\n"
-			"   h or F1 - tips; v - sound; ENTER - key repeat; SPACE - wait.");
+			"  WASD or arrows - move; B - use charge; L - retry; Q or ESC - quit;\n"
+			"  H or F1 - tips; V - sound; ENTER - key repeat; SPACE - wait.");
 		else printf(
-			"Actions:\n   wasd - move; b - use charge; l - retry; q - quit;                 \n"
-			"   h - tips; v - sound; ENTER - key repeat; SPACE - wait.      ");
+			"  WASD - move; B - use charge; L - retry; Q - quit;                 \n"
+			"  H - tips; V - sound; ENTER - key repeat; SPACE - wait.      ");
 		
 		if (mptr == 0) textcolor(YELLOW);
 		gotoxy(19,18);cputs(mptr == 0 ? "> PLAY TUTORIAL <" : "  PLAY TUTORIAL  ");putchar('\n');
@@ -394,9 +395,9 @@ int main(void){
 		if (mptr == 2) textcolor(YELLOW);
 		gotoxy(19,20);cputs(mptr == 2 ? ">  LOAD SECTOR  <" : "   LOAD SECTOR   ");putchar('\n');
 		textcolor(LIGHTGRAY);
-		gotoxy(17,24);
-		if (legacy_mode) cputs("(cooked mode, hit L to change) ");
-		else cputs("(raw mode, hit L to change)    ");
+		gotoxy(19,24);
+		if (legacy_mode) cputs("(for raw mode hit L)    ");
+		else cputs("(for cooked mode hit L) ");
 		p_i = getch();
 		if (p_i == ' ' || p_i == ENTR) break;
 		if (p_i >= 'A' && p_i <= 'Z') p_i += ('a' - 'A');
@@ -490,9 +491,9 @@ int main(void){
 		textcolor(LIGHTGRAY);
 		if (help) {
 			gotoxy(12,23);
-			cputs("  wasd - move; b - charge; l - retry; q - quit;");
+			cputs("  WASD - move; B - charge; L - retry; Q - quit;");
 			gotoxy(12,24);
-			cputs("  v - sound; h - hide; space - wait. ");
+			cputs("  V - sound; H - hide; SPACE - wait. ");
 		}
 		cputs("> ");
 		clreol();
