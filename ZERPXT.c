@@ -380,11 +380,11 @@ int main(void){
 	while (1){
 		gotoxy(1, 13); cputs("");
 		if (!legacy_mode) printf(
-			"  WASD or arrows - move; B - use charge; L - retry; Q or ESC - quit;\n"
-			"  H or F1 - tips; V - sound; ENTER - key repeat; SPACE - wait.");
+			" WASD or arrows - move; B - use charge; L - retry; Q or ESC - quit;\n"
+			" H or F1 - tips; M - sound; ENTER - key repeat; SPACE - wait.");
 		else printf(
-			"  WASD - move; B - use charge; L - retry; Q - quit;                 \n"
-			"  H - tips; V - sound; ENTER - key repeat; SPACE - wait.      ");
+			" WASD - move; B - use charge; L - retry; Q - quit;                 \n"
+			" H - tips; M - sound; ENTER - key repeat; SPACE - wait.      ");
 		
 		if (mptr == 0) textcolor(YELLOW);
 		gotoxy(19,18);cputs(mptr == 0 ? "> PLAY TUTORIAL <" : "  PLAY TUTORIAL  ");putchar('\n');
@@ -493,7 +493,7 @@ int main(void){
 			gotoxy(12,23);
 			cputs("  WASD - move; B - charge; L - retry; Q - quit;");
 			gotoxy(12,24);
-			cputs("  V - sound; H - hide; SPACE - wait. ");
+			cputs("  M - sound; H - hide; SPACE - wait. ");
 		}
 		cputs("> ");
 		clreol();
@@ -527,9 +527,10 @@ int main(void){
 				case ARR_RT: p_i = 'd'; break;
 			}
 		}
-		if (p_i == ';') p_i = 'h';
 		if (p_i == ENTR) p_i = prpr_i;
-		if (p_i >= 'A' && p_i <= 'Z') p_i += ('a' - 'A');
+		if (p_i == ';') p_i = 'h';
+		if (p_i >= 'A' && p_i <= 'Z') 
+			p_i += ('a' - 'A');
 		switch (p_i){
 			/* Alternative controls. */
 			case 'o': p_i = 'w';  break;
@@ -587,7 +588,7 @@ int main(void){
 				skip_ai++;
 				break;
 			}
-			case 'v': {
+			case 'm': {
 				dodraw = 0;
 				do_sound = !do_sound;
 				turns--;
