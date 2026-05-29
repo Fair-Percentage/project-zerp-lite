@@ -348,6 +348,7 @@ int main(void){
 	unsigned char p_i = '?';
 	unsigned char prpr_i = '?';
 	unsigned static_seed = 0;
+	char sector_order = 0;
 	int score, maxscore;
 	int level, turns;
 	int bombs, bms_lv;
@@ -381,10 +382,10 @@ int main(void){
 		gotoxy(1, 13); cputs("");
 		if (!legacy_mode) printf(
 			" WASD or arrows - move; B - use charge; L - retry; Q or ESC - quit;\n"
-			" H or F1 - tips; M - sound; ENTER - key repeat; SPACE - wait.");
+			" H or F1 - tips; V - sound; ENTER - key repeat; SPACE - wait.");
 		else printf(
 			" WASD - move; B - use charge; L - retry; Q - quit;                 \n"
-			" H - tips; M - sound; ENTER - key repeat; SPACE - wait.      ");
+			" H - tips; V - sound; ENTER - key repeat; SPACE - wait.      ");
 		
 		if (mptr == 0) textcolor(YELLOW);
 		gotoxy(19,18);cputs(mptr == 0 ? "> PLAY TUTORIAL <" : "  PLAY TUTORIAL  ");putchar('\n');
@@ -414,16 +415,17 @@ int main(void){
 	case 0:
 		help = 1;
 		tutorial = 1;
-		static_seed = 0;
+		sector_order = 0;
 	break;
 	case 1:
 		help = 0;
 		tutorial = 0;
-		static_seed = 0;
+		sector_order = 0;
 	break;
 	case 2:
 		help = 0;
 		tutorial = 0;
+		sector_order = 1;
 		clrscr();
 		printf("\n\nEnter sector id: ");
 		if(!scanf("%u", &static_seed)){
@@ -437,8 +439,7 @@ int main(void){
 	p_i = '?';
 	here:
 	my_srand(my_rand() + clock());
-	if (static_seed) 
-		{ seed = static_seed; static_seed = 0; }
+	if (sector_order) seed = static_seed;
 	else seed = my_rand();
 	facing = 1;		air = 0;
 	level = 1;		turns = 0;		super = 0;
@@ -493,7 +494,7 @@ int main(void){
 			gotoxy(12,23);
 			cputs("  WASD - move; B - charge; L - retry; Q - quit;");
 			gotoxy(12,24);
-			cputs("  M - sound; H - hide; SPACE - wait. ");
+			cputs("  V - sound; H - hide; SPACE - wait. ");
 		}
 		cputs("> ");
 		clreol();
@@ -588,7 +589,7 @@ int main(void){
 				skip_ai++;
 				break;
 			}
-			case 'm': {
+			case 'v': {
 				dodraw = 0;
 				do_sound = !do_sound;
 				turns--;
@@ -769,7 +770,8 @@ int main(void){
 			turns = 0;
 			bombs = BOMBS;
 			my_srand(my_rand() + clock());
-			seed = my_rand();
+			if (sector_order) seed++;
+			else seed = my_rand();
 			if (tutorial) bombs = open_level(level);
 			else {make_field(); tutorial = 0;}
 			if (bombs < 0) {
