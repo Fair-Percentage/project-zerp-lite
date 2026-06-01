@@ -391,10 +391,10 @@ int main(void){
 		gotoxy(19,18);cputs(mptr == 0 ? "> PLAY TUTORIAL <" : "  PLAY TUTORIAL  ");putchar('\n');
 		textcolor(LIGHTGRAY);
 		if (mptr == 1) textcolor(YELLOW);
-		gotoxy(19,19);cputs(mptr == 1 ? ">  PLAY RANDOM  <" : "   PLAY RANDOM   ");putchar('\n');
+		gotoxy(19,19);cputs(mptr == 1 ? ">  RANDOM MODE  <" : "   RANDOM MODE   ");putchar('\n');
 		textcolor(LIGHTGRAY);
 		if (mptr == 2) textcolor(YELLOW);
-		gotoxy(19,20);cputs(mptr == 2 ? ">  LOAD SECTOR  <" : "   LOAD SECTOR   ");putchar('\n');
+		gotoxy(19,20);cputs(mptr == 2 ? ">  FIXED ORDER  <" : "   FIXED ORDER   ");putchar('\n');
 		textcolor(LIGHTGRAY);
 		gotoxy(19,24);
 		if (legacy_mode) cputs("(for raw mode hit L)    ");
@@ -427,7 +427,7 @@ int main(void){
 		tutorial = 0;
 		sector_order = 1;
 		clrscr();
-		printf("\n\nEnter sector id: ");
+		printf("\n\n Enter starting sector ID: ");
 		if(!scanf("%u", &static_seed)){
 			static_seed = 0;
 			scanf("%s", keyword);
