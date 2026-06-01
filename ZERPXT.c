@@ -390,16 +390,16 @@ int main(void){
 			" H - tips; V - sound; ENTER - key repeat; SPACE - wait.      ");
 		
 		if (mptr == 0) textcolor(YELLOW);
-		gotoxy(19,18);cputs(mptr == 0 ? "> PLAY TUTORIAL <" : "  PLAY TUTORIAL  ");putchar('\n');
+		gotoxy(19,18);cputs(mptr == 0 ? "> PLAY TUTORIAL <" : "  PLAY TUTORIAL  ");
 		textcolor(LIGHTGRAY);
 		if (mptr == 1) textcolor(YELLOW);
-		gotoxy(19,19);cputs(mptr == 1 ? ">  RANDOM MODE  <" : "   RANDOM MODE   ");putchar('\n');
+		gotoxy(19,19);cputs(mptr == 1 ? ">  RANDOM MODE  <" : "   RANDOM MODE   ");
 		textcolor(LIGHTGRAY);
 		if (mptr == 2) textcolor(YELLOW);
-		gotoxy(19,20);cputs(mptr == 2 ? ">  FIXED ORDER  <" : "   FIXED ORDER   ");putchar('\n');
+		gotoxy(19,20);cputs(mptr == 2 ? ">  FIXED ORDER  <" : "   FIXED ORDER   ");
 		textcolor(LIGHTGRAY);
 		if (mptr == 3) textcolor(YELLOW);
-		gotoxy(19,21);cputs(mptr == 3 ? ">  CUSTOM KEYS  <" : "   CUSTOM KEYS   ");putchar('\n');
+		gotoxy(19,21);cputs(mptr == 3 ? ">  CUSTOM KEYS  <" : "   CUSTOM KEYS   ");
 		textcolor(LIGHTGRAY);
 		gotoxy(19,24);
 		if (legacy_mode) cputs("(for raw mode hit L)    ");
