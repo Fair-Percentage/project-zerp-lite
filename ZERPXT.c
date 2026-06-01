@@ -358,6 +358,8 @@ int main(void){
 	char isrep = 0, legacy_mode = 0;
 	int i, j, dodraw = 1;
 	int p_yt = 0, p_xt = 0;
+	char key_up = 0, key_dn = 0;
+	char key_rt = 0, key_lt = 0;
 	my_srand(time(NULL));
 	title:
 	mptr = 1;
@@ -396,6 +398,9 @@ int main(void){
 		if (mptr == 2) textcolor(YELLOW);
 		gotoxy(19,20);cputs(mptr == 2 ? ">  FIXED ORDER  <" : "   FIXED ORDER   ");putchar('\n');
 		textcolor(LIGHTGRAY);
+		if (mptr == 3) textcolor(YELLOW);
+		gotoxy(19,21);cputs(mptr == 3 ? ">  CUSTOM KEYS  <" : "   CUSTOM KEYS   ");putchar('\n');
+		textcolor(LIGHTGRAY);
 		gotoxy(19,24);
 		if (legacy_mode) cputs("(for raw mode hit L)    ");
 		else cputs("(for cooked mode hit L) ");
@@ -404,11 +409,11 @@ int main(void){
 		if (p_i >= 'A' && p_i <= 'Z') p_i += ('a' - 'A');
 		if (p_i == ESCP) p_i = getch();
 		if (p_i == 's' || p_i == ARR_DN || p_i == 'd' || p_i == ARR_RT)
-			mptr = (mptr + 2) % 3;
+			mptr = (mptr + 2) % 4;
 		if (p_i == 'e' || p_i == 'q' || p_i == 27) 
 			{ CURS_SHOW clrscr(); return 0; }
 		if (p_i == 'l') legacy_mode = !legacy_mode;
-		else mptr = (mptr + 2) % 3;
+		else mptr = (mptr + 3) % 4;
 	}
 	CURS_SHOW
 	switch (mptr){
@@ -434,6 +439,25 @@ int main(void){
 			for (kwp = keyword; *kwp; kwp++)
 				static_seed += *kwp * (kwp - keyword);
 		}
+	break;
+	case 3:
+		help = 0;
+		tutorial = 0;
+		static_seed = 0;
+		clrscr();
+		printf("\n\nEnter your up, down, left, right: ");
+		scanf("%s", keyword);
+		for (kwp = keyword, i = 0; *kwp; kwp++, i++) switch (i){
+			case 0:key_up = *kwp; break;
+			case 1:key_dn = *kwp; break;
+			case 2:key_lt = *kwp; break;
+			case 3:key_rt = *kwp; break;
+		}
+		printf("\n\nNew controls: %c - up, %c - down, %c - left, %c - right.\n\n"
+		       "Hit any key to continue . . . \n\n",
+		       key_up, key_dn, key_lt, key_rt);
+		getch();
+		goto title;
 	break;
 	}
 	p_i = '?';
@@ -529,6 +553,10 @@ int main(void){
 			}
 		}
 		if (p_i == ENTR) p_i = prpr_i;
+		if      (p_i == key_up) p_i = 'w';
+		else if (p_i == key_dn) p_i = 's';
+		else if (p_i == key_lt) p_i = 'a';
+		else if (p_i == key_rt) p_i = 'd';
 		if (p_i == ';') p_i = 'h';
 		if (p_i >= 'A' && p_i <= 'Z') 
 			p_i += ('a' - 'A');
