@@ -417,13 +417,13 @@ int main(void){
 			" WASD, numpad or arrows - move; B and . - use charge; L - retry;\n"
 			" H or F1 - tips; V - sound; SPACE - wait; Q or ESC - quit.");
 		if (mptr == 0) textcolor(YELLOW);
-		gotoxy(19,18);cputs(mptr == 0 ? "> PLAY TUTORIAL <" : "  PLAY TUTORIAL  ");putchar('\n');
+		gotoxy(19,18);cputs(mptr == 0 ? "> PLAY TUTORIAL <" : "  PLAY TUTORIAL  ");
 		textcolor(LIGHTGRAY);
 		if (mptr == 1) textcolor(YELLOW);
-		gotoxy(19,19);cputs(mptr == 1 ? ">  RANDOM MODE  <" : "   RANDOM MODE   ");putchar('\n');
+		gotoxy(19,19);cputs(mptr == 1 ? ">  RANDOM MODE  <" : "   RANDOM MODE   ");
 		textcolor(LIGHTGRAY);
 		if (mptr == 2) textcolor(YELLOW);
-		gotoxy(19,20);cputs(mptr == 2 ? ">  FIXED ORDER  <" : "   FIXED ORDER   ");putchar('\n');
+		gotoxy(19,20);cputs(mptr == 2 ? ">  FIXED ORDER  <" : "   FIXED ORDER   ");
 		textcolor(LIGHTGRAY);
 		gotoxy(17,24);
 		p_i = getch();
