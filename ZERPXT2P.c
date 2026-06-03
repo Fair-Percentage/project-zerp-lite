@@ -960,7 +960,7 @@ int main(void){
 		for (i = 0; i < 2; i++){
 			if (field[p_y - 1][p_x] == '?' || field[p_y2 - 1][p_x2] == '@') bothfall = 1;
 			while (air && (p_y + 1 < HEIGHT) && !skip_ai){
-				if (p_i == '^' || p_i == '<' || p_i == 'v' || p_i == '>' || p_i == '.')
+				if (p_i == '^' || p_i == '<' || p_i == 'V' || p_i == '>' || p_i == '.')
 					if (!bothfall) break;
 				if (field[p_y + 1][p_x] == 'q') retry++; 
 				if (field[p_y + 1][p_x]) break;
