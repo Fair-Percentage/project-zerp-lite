@@ -445,7 +445,7 @@ int main(void){
 		tutorial = 0;
 		static_seed = 0;
 		clrscr();
-		printf("\n\nEnter your up, down, left, right: ");
+		printf("\n\n Enter your up, down, left, right: ");
 		scanf("%s", keyword);
 		for (kwp = keyword, i = 0; *kwp; kwp++, i++) switch (i){
 			case 0:key_up = *kwp; break;
@@ -453,8 +453,8 @@ int main(void){
 			case 2:key_lt = *kwp; break;
 			case 3:key_rt = *kwp; break;
 		}
-		printf("\n\nNew controls: %c - up, %c - down, %c - left, %c - right.\n\n"
-		       "Hit any key to continue . . . \n\n",
+		printf("\n\n New controls: %c - up, %c - down, %c - left, %c - right."
+		       "\n\n Hit any key to continue . . . \n\n",
 		       key_up, key_dn, key_lt, key_rt);
 		getch();
 		goto title;
@@ -552,11 +552,11 @@ int main(void){
 				case ARR_RT: p_i = 'd'; break;
 			}
 		}
-		if (p_i == ENTR) p_i = prpr_i;
 		if      (p_i == key_up) p_i = 'w';
 		else if (p_i == key_dn) p_i = 's';
 		else if (p_i == key_lt) p_i = 'a';
 		else if (p_i == key_rt) p_i = 'd';
+		if (p_i == ENTR) p_i = prpr_i;
 		if (p_i == ';') p_i = 'h';
 		if (p_i >= 'A' && p_i <= 'Z') 
 			p_i += ('a' - 'A');
