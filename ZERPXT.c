@@ -589,6 +589,7 @@ int main(void){
 				field[p_y][p_x] = 0;
 				if (field[p_y - 1][p_x]) {score++; SND(560)}
 				p_y--;
+				field[p_y][p_x] = 0;
 				undrawat(p_x, p_y);
 				field[p_y][p_x] = '@';
 			
