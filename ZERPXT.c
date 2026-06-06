@@ -458,7 +458,6 @@ int main(void){
 		       key_up, key_dn, key_lt, key_rt);
 		getch();
 		goto title;
-	break;
 	}
 	p_i = '?';
 	here:
