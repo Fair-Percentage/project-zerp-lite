@@ -549,7 +549,6 @@ int main(void){
 		p_yt2 = p_y2;
 		turns++;
 		/* Alternative keys for actions */
-		if (p_i == ';') p_i = 'h';
 		if (p_i >= 'A' && p_i <= 'Z') 
 			p_i += ('a' - 'A');
 		if (p_i == ESCP){
@@ -560,6 +559,7 @@ int main(void){
 				case ARR_LT: p_i = '<'; break;
 				case ARR_DN: p_i = 'V'; break;
 				case ARR_RT: p_i = '>'; break;
+				case   ';' : p_i = 'h'; break;
 			}
 		}
 		switch (p_i){
