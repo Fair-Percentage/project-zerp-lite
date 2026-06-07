@@ -549,6 +549,7 @@ int main(void){
 				case ARR_LT: p_i = 'a'; break;
 				case ARR_DN: p_i = 's'; break;
 				case ARR_RT: p_i = 'd'; break;
+				case   ';' : p_i = 'h'; break;
 			}
 		}
 		if      (p_i == key_up) p_i = 'w';
@@ -556,7 +557,6 @@ int main(void){
 		else if (p_i == key_lt) p_i = 'a';
 		else if (p_i == key_rt) p_i = 'd';
 		if (p_i == ENTR) p_i = prpr_i;
-		if (p_i == ';') p_i = 'h';
 		if (p_i >= 'A' && p_i <= 'Z') 
 			p_i += ('a' - 'A');
 		switch (p_i){
