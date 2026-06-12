@@ -398,18 +398,16 @@ int main(void){
 	CURS_HIDE
 	clrscr();
 	textcolor(WHITE);
-	putchar('\n');
-	cputs("    _____           _           _     ______");					 putchar('\n');
-	cputs("   |  __ \\         (_)         | |   |___  /");					 putchar('\n');
-	cputs("   | |__) | __ ___  _  ___  ___| |_     / / ___ _ __ _ __");		 putchar('\n');
-	cputs("   |  ___/ '__/ _ \\| |/ _ \\/ __| __|   / / / _ \\ '__| '_ \\"); putchar('\n');
-	cputs("   | |   | | | (_) | |  __/ (__| |_   / /_|  __/ |  | |_) |");	 putchar('\n');
-	cputs("   |_|   |_|  \\___/| |\\___|\\___|\\__| /_____\\___|_|  | .__/");putchar('\n');
-	cputs("                  _/ |                              | |");		 putchar('\n');
-	cputs("                 |__/                               |_|");		 putchar('\n');
-	putchar('\n');
+	gotoxy(5, 2);cputs("_____           _           _     ______");
+	gotoxy(4, 3);cputs("|  __ \\         (_)         | |   |___  /");
+	gotoxy(4, 4);cputs("| |__) | __ ___  _  ___  ___| |_     / / ___ _ __ _ __");
+	gotoxy(4, 5);cputs("|  ___/ '__/ _ \\| |/ _ \\/ __| __|   / / / _ \\ '__| '_ \\");
+	gotoxy(4, 6);cputs("| |   | | | (_) | |  __/ (__| |_   / /_|  __/ |  | |_) |");
+	gotoxy(4, 7);cputs("|_|   |_|  \\___/| |\\___|\\___|\\__| /_____\\___|_|  | .__/");
+	gotoxy(19, 8);cputs("_/ |");gotoxy(53, 8);cputs("| |");
+	gotoxy(18, 9);cputs("|__/");gotoxy(53, 9);cputs("|_|");
 	textcolor(LIGHTGRAY);
-	cputs(  "      Goal: break all weak blocks and don't get stuck!");
+	gotoxy(7, 11); cputs("Goal: break all weak blocks and don't get stuck!");
 	gotoxy(4,24); cputs("KosmoKrab 2026");
 	while (1){
 		gotoxy(1, 13); cputs("");
@@ -903,6 +901,7 @@ int main(void){
 			if (bombs == bms_lv && bms_lv)
 				score += 30;
 			dodraw = 1;
+			super = 0;
 			CURS_HIDE
 			clrscr();
 			printf("\n\n\tLevel %d clear!\n\n",level);
