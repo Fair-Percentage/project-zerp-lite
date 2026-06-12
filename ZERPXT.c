@@ -774,6 +774,7 @@ int main(void){
 			if (bombs == bms_lv && bms_lv)
 				score += 30;
 			dodraw = 1;
+			super = 0;
 			CURS_HIDE
 			clrscr();
 			printf("\n\n\tLevel %d clear!\n\n",level);
