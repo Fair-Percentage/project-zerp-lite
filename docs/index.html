@@ -53,17 +53,17 @@
 			}
 		}, false);
 
-        fetch(romUrl)
+        fetch(gameUrl)
             .then(response => {
                 if (!response.ok) {
-                    throw new Error("Failed to load ROM file: " + response.statusText);
+                    throw new Error("Failed to load GAME file: " + response.statusText);
                 }
                 return response.arrayBuffer();
             })
             .then(romBuffer => {
 				embedDOS({
 					container: "game",
-					name: romURL,
+					name: gameURL,
 					zipFile: romBuffer,
 					soundEnabled: true,
 					showMobileControls: isMobileDevice(),
