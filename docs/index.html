@@ -63,7 +63,7 @@
             .then(romBuffer => {
 				embedDOS({
 					container: "game",
-					name: gameURL,
+					name: romURL,
 					zipFile: romBuffer,
 					soundEnabled: true,
 					showMobileControls: isMobileDevice(),
