@@ -42,7 +42,7 @@ typedef unsigned long my32;
 
 unsigned char field[HEIGHT][WIDTH];
 unsigned char stored_field[HEIGHT][WIDTH];
-unsigned int seed;
+unsigned long seed;
 char facing, air, help = 0, super;
 int stored_pos[2];
 
@@ -172,7 +172,6 @@ int open_level(int n){
 			switch (*ptr){
 				case ' ': field[i][j] =  0 ; break;
 				case '!': field[i][j] =  1 ; break;
-				case '[': field[i][j] =  2 ; break;
 				case '#': field[i][j] =  3 ; break;
 				case '%': field[i][j] = 'q'; break;
 				case '@': 
@@ -347,14 +346,14 @@ int main(void){
 	unsigned char prev_i = '?';
 	unsigned char p_i = '?';
 	unsigned char prpr_i = '?';
-	unsigned static_seed = 0;
+	unsigned long static_seed = 0;
 	char sector_order = 0;
 	int score, maxscore;
 	int level, turns;
 	int bombs, bms_lv;
 	int scr_lv, retries;
 	int do_sound = 1, mptr = 1;
-	char keyword[20] = "", *kwp;
+	char keyword[12] = "", *kwp;
 	char isrep = 0, legacy_mode = 0;
 	int i, j, dodraw = 1;
 	int p_yt = 0, p_xt = 0;
@@ -431,7 +430,7 @@ int main(void){
 		sector_order = 1;
 		clrscr();
 		printf("\n\n Enter starting sector ID: ");
-		if(!scanf("%u", &static_seed)){
+		if(!scanf("%lu", &static_seed)){
 			static_seed = 0;
 			scanf("%s", keyword);
 			for (kwp = keyword; *kwp; kwp++)
@@ -485,7 +484,7 @@ int main(void){
 		cprintf("Level: %d ", level);
 		putchar('|');
 		if (tutorial) cprintf(" Tutorial ");
-		else cprintf(" Sector: %u ", seed);
+		else cprintf(" Sector: %lu ", seed);
 		putchar('|');
 		cprintf(" Last key: %c ", p_i);
 		putchar('|');
