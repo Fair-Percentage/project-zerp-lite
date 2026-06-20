@@ -42,7 +42,7 @@ typedef unsigned long my32;
 
 unsigned char field[HEIGHT][WIDTH];
 unsigned char stored_field[HEIGHT][WIDTH];
-unsigned int seed;
+unsigned long seed;
 char facing, air, help = 0, super;
 char facing2, air2, super2;
 int stored_pos[2], stored_pos2[2];
@@ -378,7 +378,7 @@ int main(void){
 	int p_x, p_y, p_x2, p_y2;
 	unsigned char p_i = '?';
 	unsigned char prpr_i = '?';
-	unsigned static_seed = 0;
+	unsigned long static_seed = 0;
 	char sector_order = 0;
 	int score, maxscore;
 	char leader;
@@ -452,7 +452,7 @@ int main(void){
 		sector_order = 1;
 		clrscr();
 		printf("\n\n Enter starting sector ID: ");
-		if(!scanf("%u", &static_seed)){
+		if(!scanf("%lu", &static_seed)){
 			static_seed = 0;
 			scanf("%s", keyword);
 			for (kwp = keyword; *kwp; kwp++)
@@ -493,7 +493,7 @@ int main(void){
 		cprintf("Level: %d ", level);
 		putchar('|');
 		if (tutorial) cprintf(" Tutorial ");
-		else cprintf(" Sector: %u ", seed);
+		else cprintf(" Sector: %lu ", seed);
 		putchar('|');
 		cprintf(" Last key: %c ", p_i);
 		putchar('|');
