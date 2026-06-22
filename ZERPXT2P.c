@@ -916,7 +916,9 @@ int main(void){
 					"\tHit any key... ", 
 				turns, score - scr_lv, score2 - scr_lv2, bms_lv - bombs, retries);
 			NOSND
-			getch();
+			p_i = getch();
+			if (p_i == ESCP) getch();
+			p_i = '?';
 			gotoxy(1,1); cputs("");
 			CURS_SHOW
 
